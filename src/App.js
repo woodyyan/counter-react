@@ -6,7 +6,7 @@ function App() {
   return (
     <div className="App">
       <header className="App-header">
-        <CounterGroup />
+        <CounterGroup size={4} />
       </header>
     </div>
   );
