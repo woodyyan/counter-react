@@ -5,6 +5,7 @@ class Counter extends Component {
     super(props);
 
     this.onIncrease = this.onIncrease.bind(this);
+    this.onDecrease = this.onDecrease.bind(this);
 
     this.state = {
       number: 10,
@@ -15,12 +16,16 @@ class Counter extends Component {
     this.setState((prevState) => ({ number: prevState.number + 1 }));
   }
 
+  onDecrease() {
+    this.setState((prevState) => ({ number: prevState.number - 1 }));
+  }
+
   render() {
     return (
       <section>
         <button onClick={this.onIncrease}>+</button>
         <mark>{this.state.number}</mark>
-        <button>-</button>
+        <button onClick={this.onDecrease}>-</button>
       </section>
     );
   }
