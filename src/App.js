@@ -1,15 +1,12 @@
 import React from "react";
 import "./App.css";
+import Counter from "./components/Counter";
 
 function App() {
   return (
     <div className="App">
       <header className="App-header">
-        <section>
-          <button>+</button>
-          <mark>10</mark>
-          <button>-</button>
-        </section>
+        <Counter />
       </header>
     </div>
   );
