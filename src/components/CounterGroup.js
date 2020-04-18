@@ -10,6 +10,13 @@ class CounterGroup extends Component {
     const countOfCounters = new Array(size).fill(initValue);
     return (
       <div>
+        <form>
+          <fieldset>
+            <label htmlFor="number">Generate </label>
+            <input name="number" placeholder="input number here..." />
+            <span> Counters</span>
+          </fieldset>
+        </form>
         {countOfCounters.map(() => (
           <Counter key={uniqid()} />
         ))}
