@@ -1,27 +1,39 @@
 import React, { Component } from "react";
 import PropTypes from "prop-types";
-import uniqid from "uniqid";
 import Counter from "./Counter";
+import {
+  COUNTER_GROUP_INIT_COUNT,
+  COUNTER_GROUP_INIT_SUM,
+} from "../constants/constants";
 
 class CounterGroup extends Component {
   constructor(props) {
     super(props);
 
     this.state = {
-      number: 0,
+      number: COUNTER_GROUP_INIT_COUNT,
+      sum: COUNTER_GROUP_INIT_SUM,
     };
 
     this.onChange = this.onChange.bind(this);
     this.onSubmit = this.onSubmit.bind(this);
+    this.onCalculate = this.onCalculate.bind(this);
   }
 
   onChange(event) {
-    event.preventDefault();
-    this.setState({ number: event.target.value });
+    this.setState({ number: event.target.value, sum: COUNTER_GROUP_INIT_SUM });
   }
 
   onSubmit(event) {
     event.preventDefault();
+  }
+
+  onCalculate(variation) {
+    this.setState((prevState) => {
+      return {
+        sum: prevState.sum + variation,
+      };
+    });
   }
 
   initArray(number) {
@@ -44,13 +56,20 @@ class CounterGroup extends Component {
               name="number"
               placeholder="input number here..."
               onChange={this.onChange}
-              value={this.state.size}
+              value={this.state.number}
             />
             <span> Counters</span>
+            <p>
+              sum of all counters value is <mark>{this.state.sum}</mark>
+            </p>
           </fieldset>
         </form>
-        {countOfCounters.map(() => (
-          <Counter key={uniqid()} />
+        {countOfCounters.map((value) => (
+          <Counter
+            key={value}
+            number={this.state.number}
+            onCalculate={this.onCalculate}
+          />
         ))}
       </div>
     );
@@ -58,7 +77,11 @@ class CounterGroup extends Component {
 }
 
 CounterGroup.propTypes = {
-  size: PropTypes.number.isRequired,
+  size: PropTypes.number,
+};
+
+CounterGroup.defaultProps = {
+  size: COUNTER_GROUP_INIT_COUNT,
 };
 
 export default CounterGroup;
