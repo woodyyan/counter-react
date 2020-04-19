@@ -12,10 +12,16 @@ class CounterGroup extends Component {
     };
 
     this.onChange = this.onChange.bind(this);
+    this.onSubmit = this.onSubmit.bind(this);
   }
 
   onChange(event) {
+    event.preventDefault();
     this.setState({ number: event.target.value });
+  }
+
+  onSubmit(event) {
+    event.preventDefault();
   }
 
   initArray(number) {
@@ -31,7 +37,7 @@ class CounterGroup extends Component {
 
     return (
       <div>
-        <form>
+        <form onSubmit={this.onSubmit}>
           <fieldset>
             <label htmlFor="number">Generate </label>
             <input
