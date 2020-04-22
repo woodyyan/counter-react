@@ -1,9 +1,11 @@
 import React, { Component } from "react";
+import { Button,Space } from 'antd';
 import {
   COUNTER_INIT_VALUE,
   COUNTER_INCREMENT,
   COUNTER_DECREMENT,
 } from "../constants/constants";
+import 'antd/dist/antd.css'; 
 
 class Counter extends Component {
   constructor(props) {
@@ -42,11 +44,11 @@ class Counter extends Component {
 
   render() {
     return (
-      <section>
-        <button onClick={this.onIncrease}>+</button>
+      <Space>
+        <Button onClick={this.onIncrease}>+</Button>
         <mark>{this.state.value}</mark>
-        <button onClick={this.onDecrease}>-</button>
-      </section>
+        <Button onClick={this.onDecrease}>-</Button>
+      </Space>
     );
   }
 }

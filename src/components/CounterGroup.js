@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 import PropTypes from "prop-types";
 import Counter from "./Counter";
+import { Input, Row } from 'antd';
 import {
   COUNTER_GROUP_INIT_COUNT,
   COUNTER_GROUP_INIT_SUM,
@@ -52,7 +53,7 @@ class CounterGroup extends Component {
         <form onSubmit={this.onSubmit}>
           <fieldset>
             <label htmlFor="number">Generate </label>
-            <input
+            <Input
               name="number"
               placeholder="input number here..."
               onChange={this.onChange}
@@ -65,11 +66,13 @@ class CounterGroup extends Component {
           </fieldset>
         </form>
         {countOfCounters.map((value) => (
-          <Counter
-            key={value}
-            number={this.state.number}
-            onCalculate={this.onCalculate}
-          />
+          <Row>
+            <Counter
+              key={value}
+              number={this.state.number}
+              onCalculate={this.onCalculate}
+            />
+          </Row>
         ))}
       </div>
     );
